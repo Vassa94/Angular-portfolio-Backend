@@ -10,7 +10,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface PersonaRepository extends JpaRepository <Persona,Long>{
     
-    
-    
-    
 }

@@ -1,9 +1,11 @@
 package com.Angularportfolio.portfolio.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,28 +14,28 @@ import lombok.Setter;
 public class Educacion {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "edu_generator")
+    @SequenceGenerator(name="edu_generator", sequenceName = "edu_seq", allocationSize=1)
     private Long id;
     private String nombre;
     private String fechaInicio;
     private Boolean actual ;
     private String fechaFin ;
-    private String posicion;
+    @Column(length = 400)
     private String descripcion;
-    private Long per_id;
+    private Long perId;
 
     public Educacion() {
     }
 
-    public Educacion(Long id, String nombre, String fechaInicio, Boolean actual, String fechaFin, String posicion, String descripcion, Long per_id) {
+    public Educacion(Long id, String nombre, String fechaInicio, Boolean actual, String fechaFin, String posicion, String descripcion, Long perId) {
         this.id = id;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.actual = actual;
         this.fechaFin = fechaFin;
-        this.posicion = posicion;
         this.descripcion = descripcion;
-        this.per_id = per_id;
+        this.perId = perId;
     }
 
     public Long getId() {
@@ -56,16 +58,12 @@ public class Educacion {
         return fechaFin;
     }
 
-    public String getPosicion() {
-        return posicion;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
 
-    public Long getPer_id() {
-        return per_id;
+    public Long getPerId() {
+        return perId;
     }
 
     public void setId(Long id) {
@@ -88,16 +86,12 @@ public class Educacion {
         this.fechaFin = fechaFin;
     }
 
-    public void setPosicion(String posicion) {
-        this.posicion = posicion;
-    }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public void setPer_id(Long per_id) {
-        this.per_id = per_id;
+    public void setPerId(Long perId) {
+        this.perId = perId;
     }
     
     

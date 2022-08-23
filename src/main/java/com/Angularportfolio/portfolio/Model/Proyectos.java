@@ -1,9 +1,11 @@
 package com.Angularportfolio.portfolio.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,24 +14,26 @@ import lombok.Setter;
 public class Proyectos {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "proy_generator")
+    @SequenceGenerator(name="proy_generator", sequenceName = "proy_seq", allocationSize=1)
     private Long id;
     private String nombre;
     private String imgUrl;
+    @Column(length = 400)
     private String descripcion;
     private String linkUrl;
-    private Long per_id;
+    private Long perId;
 
     public Proyectos() {
     }
 
-    public Proyectos(Long id, String nombre, String imgUrl, String descripcion, String linkUrl, Long per_id) {
+    public Proyectos(Long id, String nombre, String imgUrl, String descripcion, String linkUrl, Long perId) {
         this.id = id;
         this.nombre = nombre;
         this.imgUrl = imgUrl;
         this.descripcion = descripcion;
         this.linkUrl = linkUrl;
-        this.per_id = per_id;
+        this.perId = perId;
     }
 
     public Long getId() {
@@ -52,8 +56,8 @@ public class Proyectos {
         return linkUrl;
     }
 
-    public Long getPer_id() {
-        return per_id;
+    public Long getPerId() {
+        return perId;
     }
 
     public void setId(Long id) {
@@ -76,8 +80,8 @@ public class Proyectos {
         this.linkUrl = linkUrl;
     }
 
-    public void setPer_id(Long per_id) {
-        this.per_id = per_id;
+    public void setPerId(Long perId) {
+        this.perId = perId;
     }
     
     

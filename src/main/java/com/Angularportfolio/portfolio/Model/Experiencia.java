@@ -1,9 +1,11 @@
 package com.Angularportfolio.portfolio.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,28 +14,30 @@ import lombok.Setter;
 public class Experiencia {
 
         @Id
-        @GeneratedValue(strategy=GenerationType.SEQUENCE)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "exp_generator")
+        @SequenceGenerator(name="exp_generator", sequenceName = "exp_seq", allocationSize=1)
         private Long id;
         private String titulo;
         private String fechaInicio;
         private Boolean actual;
         private String fechaFin;
         private String posicion;
-        private String decripcion;
-        private Long per_id;
+        @Column(length=500)
+        private String descripcion;
+        private Long perId;
 
     public Experiencia() {
     }
 
-    public Experiencia(Long id, String titulo, String fechaInicio, Boolean actual, String fechaFin, String posicion, String decripcion, Long per_id) {
+    public Experiencia(Long id, String titulo, String fechaInicio, Boolean actual, String fechaFin, String posicion, String descripcion, Long perId) {
         this.id = id;
         this.titulo = titulo;
         this.fechaInicio = fechaInicio;
         this.actual = actual;
         this.fechaFin = fechaFin;
         this.posicion = posicion;
-        this.decripcion = decripcion;
-        this.per_id = per_id;
+        this.descripcion = descripcion;
+        this.perId = perId;
     }
 
     public Long getId() {
@@ -60,12 +64,12 @@ public class Experiencia {
         return posicion;
     }
 
-    public String getDecripcion() {
-        return decripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public Long getPer_id() {
-        return per_id;
+        return perId;
     }
 
     public void setId(Long id) {
@@ -92,12 +96,12 @@ public class Experiencia {
         this.posicion = posicion;
     }
 
-    public void setDecripcion(String decripcion) {
-        this.decripcion = decripcion;
+    public void setDescripcion(String decripcion) {
+        this.descripcion = decripcion;
     }
 
     public void setPer_id(Long per_id) {
-        this.per_id = per_id;
+        this.perId = per_id;
     }
         
         
