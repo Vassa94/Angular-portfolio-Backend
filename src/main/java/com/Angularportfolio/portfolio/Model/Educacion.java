@@ -23,18 +23,21 @@ public class Educacion {
     private String fechaFin ;
     @Column(length = 400)
     private String descripcion;
+
+    private String titulo;
     private Long perId;
 
     public Educacion() {
     }
 
-    public Educacion(Long id, String nombre, String fechaInicio, Boolean actual, String fechaFin, String posicion, String descripcion, Long perId) {
+    public Educacion(Long id, String nombre, String fechaInicio, Boolean actual, String fechaFin, String posicion, String descripcion, String titulo, Long perId) {
         this.id = id;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.actual = actual;
         this.fechaFin = fechaFin;
         this.descripcion = descripcion;
+        this.titulo = titulo;
         this.perId = perId;
     }
 
@@ -60,6 +63,10 @@ public class Educacion {
 
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 
     public Long getPerId() {
@@ -88,6 +95,10 @@ public class Educacion {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public void setPerId(Long perId) {

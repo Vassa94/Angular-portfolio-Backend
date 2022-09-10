@@ -9,6 +9,9 @@ public interface IPersonaService {
     
     // método para traer todas las personas
     public List <Persona> getPersonas();
+
+    Persona getPersona(Long id);
+
     // método para dar de alta una persona
     public void savePersona(Persona perso);
     // método para borrar una persona

@@ -18,9 +18,11 @@ public class Proyectos {
     @SequenceGenerator(name="proy_generator", sequenceName = "proy_seq", allocationSize=1)
     private Long id;
     private String nombre;
+    @Column(length = 400)
     private String imgUrl;
     @Column(length = 400)
     private String descripcion;
+    @Column(length = 400)
     private String linkUrl;
     private Long perId;
 

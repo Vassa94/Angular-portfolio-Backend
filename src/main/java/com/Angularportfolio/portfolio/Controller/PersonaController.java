@@ -4,17 +4,12 @@ import com.Angularportfolio.portfolio.Model.Persona;
 import com.Angularportfolio.portfolio.Service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
-
+@CrossOrigin (origins = "*", methods = {GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE})
 @RestController
 public class PersonaController {
 
@@ -24,6 +19,11 @@ public class PersonaController {
     @GetMapping ("/personas/traer")
     public List<Persona> getPersonas(){
         return interPersona.getPersonas();
+    }
+
+    @GetMapping ("/personas/traer/{id}")
+    public Persona getPersona(@PathVariable Long id){
+        return interPersona.getPersona(id);
     }
     
     @PostMapping ("/personas/crear")
@@ -40,6 +40,7 @@ public class PersonaController {
     }
      
     @PutMapping("personas/editar/{id}")
+    @RequestMapping(value = "personas/editar/{id}", method = { RequestMethod.GET, RequestMethod.PUT})
     public Persona editPersona (@PathVariable Long id,    
                                 @RequestParam("nombre")String nuevoNombre,
                                 @RequestParam("apellido")String nuevoApellido,
@@ -50,8 +51,8 @@ public class PersonaController {
         Persona perso=interPersona.findPersona(id);
         // esto también puede ir en service
         // para desacoplar mejor aún el código en un nuevo método
-        perso.setApellido(nuevoApellido);
         perso.setNombre(nuevoNombre);
+        perso.setApellido(nuevoApellido);
         perso.setTitulo(nuevoTitulo);
         perso.setImgUrl(nuevoImgUrl);
         perso.setAbout(nuevoAbout);

@@ -4,10 +4,17 @@
  */
 package com.Angularportfolio.portfolio.Service;
 
-/**
- *
- * @author vassa
- */
+import com.Angularportfolio.portfolio.Model.Proyectos;
+import java.util.List;
+
+
 public interface IProyectosService {
+
+    public List <Proyectos> getProyec();
+
+    public void saveProyec(Proyectos proye);
+
+    public void deleteProyec (Long id);
     
+    public Proyectos findProyec(Long id);
 }

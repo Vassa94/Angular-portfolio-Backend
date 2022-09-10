@@ -4,16 +4,12 @@ import com.Angularportfolio.portfolio.Model.Educacion;
 import com.Angularportfolio.portfolio.Service.IEducacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+import static org.springframework.web.bind.annotation.RequestMethod.TRACE;
 
+@CrossOrigin(origins = "*", methods = {GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE})
 @RestController
 public class EducacionController {
     
@@ -34,6 +30,7 @@ public class EducacionController {
     }
 
     @DeleteMapping("/educacion/borrar/{id}")
+    @RequestMapping(value = "/educacion/borrar/{id}", method = { RequestMethod.GET, RequestMethod.DELETE})
     public String deleteEduc(@PathVariable Long id){
          interEducacion.deleteEduc(id);
         // devuelve un string avisando si eliminó correctamente
@@ -47,6 +44,7 @@ public class EducacionController {
                                 @RequestParam("actual")Boolean nuevoActual,
                                 @RequestParam("fechaFin")String nuevoFechaFin,
                                 @RequestParam("descripcion")String nuevoDescripcion,
+                                @RequestParam("titulo")String nuevotitulo,
                                 @RequestParam("perId")Long nuevoPerId){
         
         Educacion educ=interEducacion.findEduc(id);
@@ -54,8 +52,13 @@ public class EducacionController {
         educ.setNombre(nuevoNombre);
         educ.setFechaInicio(nuevoFechaInicio);
         educ.setActual(nuevoActual);
-        educ.setFechaFin(nuevoFechaFin);
+        if (nuevoActual){
+            educ.setFechaFin("Actualmente");
+        } else {
+            educ.setFechaFin(nuevoFechaFin);
+        }
         educ.setDescripcion(nuevoDescripcion);
+        educ.setTitulo(nuevotitulo);
         educ.setPerId(nuevoPerId);
         
         interEducacion.saveEduc(educ);

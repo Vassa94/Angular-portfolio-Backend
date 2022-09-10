@@ -18,6 +18,7 @@ public class Persona {
     private String nombre;
     private String apellido;
     private String titulo;
+    @Column(length= 400)
     private String imgUrl;
     @Column(length = 400)
     private String about;

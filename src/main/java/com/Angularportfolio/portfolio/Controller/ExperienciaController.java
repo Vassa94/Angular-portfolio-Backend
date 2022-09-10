@@ -4,16 +4,12 @@ import com.Angularportfolio.portfolio.Model.Experiencia;
 import com.Angularportfolio.portfolio.Service.IExperienciaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+import static org.springframework.web.bind.annotation.RequestMethod.TRACE;
 
+@CrossOrigin(origins = "*", methods = {GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE})
 @RestController
 public class ExperienciaController {
 
@@ -54,7 +50,11 @@ public class ExperienciaController {
         expe.setTitulo(nuevoTitulo);
         expe.setFechaInicio(nuevoFechaInicio);
         expe.setActual(nuevoActual);
-        expe.setFechaFin(nuevoFechaFin);
+        if (nuevoActual){
+            expe.setFechaFin("Actualmente");
+        } else {
+            expe.setFechaFin(nuevoFechaFin);
+            }
         expe.setPosicion(nuevoPosicion);
         expe.setDescripcion(nuevoDescripcion);
         expe.setPerId(nuevoPerId);

@@ -17,6 +17,22 @@ public class PersonaService implements IPersonaService {
     public List<Persona> getPersonas(){
     List<Persona> listaPersonas=persoRepository.findAll();
     return listaPersonas;
+
+    }
+
+//    @Override
+//    public Persona updatePersona (Long id, PersonaUpdate cuchuflito ){
+//        Persona x = this.getPersona(id);
+//        if (cuchuflito.getNombre()!=null){
+//            x.setNombre(cuchuflito.getNombre());
+//        }
+//        return persoRepository.save(x);
+
+//    }
+
+    @Override
+    public Persona getPersona(Long id){
+        return (Persona) persoRepository.findById(id).orElse(null);
     }
     
     @Override
@@ -31,7 +47,6 @@ public class PersonaService implements IPersonaService {
     
     @Override
     public Persona findPersona(Long id){
-    // acá si no encuentro la persona,devuelvo null por eso va el orElse
     Persona perso = persoRepository.findById(id).orElse(null);
     return perso;
     }
