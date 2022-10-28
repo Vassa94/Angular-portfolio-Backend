@@ -11,7 +11,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import static org.springframework.web.bind.annotation.RequestMethod.TRACE;
 
 
-@CrossOrigin (origins = "*", methods = {GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE})
+@CrossOrigin (origins = "http://localhost:4200", methods = {GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE})
 @RestController
 public class ProyectoController {
 
