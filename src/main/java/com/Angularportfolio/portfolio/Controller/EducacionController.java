@@ -38,6 +38,7 @@ public class EducacionController {
     }
      
     @PutMapping("educacion/editar/{id}")
+    @RequestMapping(value = "/educacion/editar/{id}", method = { RequestMethod.GET, RequestMethod.PUT})
     public Educacion editEduc (@PathVariable Long id,    
                                 @RequestParam("nombre")String nuevoNombre,
                                 @RequestParam("fechaInicio")String nuevoFechaInicio,
