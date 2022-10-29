@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 import static org.springframework.web.bind.annotation.RequestMethod.TRACE;
 
-@CrossOrigin(origins = "http://localhost:4200", methods = {GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE})
+@CrossOrigin(origins = "*", methods = {GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE})
 @RestController
 public class EducacionController {
     
@@ -38,7 +38,6 @@ public class EducacionController {
     }
      
     @PutMapping("educacion/editar/{id}")
-    @RequestMapping(value = "/educacion/editar/{id}", method = { RequestMethod.GET, RequestMethod.PUT})
     public Educacion editEduc (@PathVariable Long id,    
                                 @RequestParam("nombre")String nuevoNombre,
                                 @RequestParam("fechaInicio")String nuevoFechaInicio,
