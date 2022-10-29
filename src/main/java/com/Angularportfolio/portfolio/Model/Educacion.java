@@ -15,7 +15,7 @@ public class Educacion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name="edu_generator", sequenceName = "edu_seq", allocationSize=1)
+    //@SequenceGenerator(name="edu_generator", sequenceName = "edu_seq", allocationSize=1)
     private Long id;
     private String nombre;
     private String fechaInicio;
